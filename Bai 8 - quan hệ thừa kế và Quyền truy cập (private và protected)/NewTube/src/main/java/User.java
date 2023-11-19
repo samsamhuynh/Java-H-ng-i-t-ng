@@ -1,7 +1,7 @@
 public class User {
-    public String email;
-    public String password;
-    public String nickname;
+    protected String email;
+    protected String password;
+    protected String nickname;
 
     public void login() {
         System.out.println("Hello " + this.nickname + "!");
