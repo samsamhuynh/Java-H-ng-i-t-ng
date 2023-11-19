@@ -19,4 +19,11 @@ public class LoginManager {
         administrator.enterPage();
         System.out.println("process something after login\n");
     }
+
+    public void processLogin(UniversityUser universityUser) {
+        System.out.println("process something before login");
+        universityUser.login();
+        universityUser.enterPage();
+        System.out.println("process something after login\n");
+    }
 }
