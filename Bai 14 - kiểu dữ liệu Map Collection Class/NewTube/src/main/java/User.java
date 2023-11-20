@@ -34,7 +34,7 @@ class User {
     }
 
     public void viewCourse(HashMap<String, String> courseDetail) {
-        viewHistory.add(courseId);
+        this.viewHistoryDetail.add(courseDetail);
         this.showViewHistoryinfo();
     }
 
@@ -45,31 +45,30 @@ class User {
     }
 
     public void checkValidCourse(HashMap<String, String> courseDetail) {
-
+        this.checkCourseKey(courseDetail);
+        this.checkCourseValue(courseDetail);
     }
 
-    public void checkCourseKey(HashMap<String, String> courseDetail) {
+    private void checkCourseKey(HashMap<String, String> courseDetail) {
+        ArrayList<String> courseKeys = new ArrayList<>(courseDetail.keySet());
+        ArrayList<String> validCourseKeys = new ArrayList<>(this.validCourseDetail.keySet());
 
-    }
+        boolean isValid = courseKeys.equals(validCourseKeys);
 
-    public void removeViewHistory(String courseId) {
-        boolean result = this.viewHistory.remove(courseId);
-        if (result) {
-            System.out.println(courseId + " course is removed from view history");
-        } else {
-            System.out.println(courseId + " course is not in history");
+        if (!isValid) {
+            System.out.println("invalid course keys!");
+            System.out.println("entered keys : " + courseKeys);
+            System.out.println("valid keys : " + validCourseDetail);
         }
-        this.showViewHistoryinfo();
     }
 
-    public void removeViewHistory(int viewIndex) {
-        String removedCourseId = this.viewHistory.remove(viewIndex);
-        System.out.println("course " + removedCourseId + " is removed from view history");
-        this.showViewHistoryinfo();
-    }
+    private void checkCourseValue(HashMap<String, String> courseDetail) {
+        ArrayList<String> courseKeys = new ArrayList<>(courseDetail.keySet());
 
-    public void clearViewHistory() {
-        this.viewHistory.clear();
-        this.showViewHistoryinfo();
+        for (String key:courseKeys) {
+            if (courseDetail.get(key) == null) {
+                System.out.println("'" + key + "'" + " value is must entered.");
+            }
+        }
     }
 }
